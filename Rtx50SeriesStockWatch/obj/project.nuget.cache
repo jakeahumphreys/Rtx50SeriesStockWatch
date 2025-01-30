@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "2DnZ0bt7Wc8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jakeh\\RiderProjects\\Rtx50SeriesStockWatch\\Rtx50SeriesStockWatch\\Rtx50SeriesStockWatch.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jakeh\\.nuget\\packages\\httpclienttocurl\\2.0.6\\httpclienttocurl.2.0.6.nupkg.sha512",
+    "C:\\Users\\jakeh\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
