@@ -3,6 +3,8 @@
 using Rtx50SeriesStockWatch.Common;
 using Rtx50SeriesStockWatch.FeInventory;
 
+const int DELAY_SECONDS = 30;
+
 Console.WriteLine("Spinning up");
 
 var cts = new CancellationTokenSource();
@@ -24,7 +26,7 @@ while (!cts.Token.IsCancellationRequested)
         await CheckStock(feInventoryClient, "RTX 5080", NvidiaSku.RTX_5080);
         await CheckStock(feInventoryClient, "RTX 5090", NvidiaSku.RTX_5090);
         
-        await CountdownAsync(30, cts.Token);
+        await CountdownAsync(DELAY_SECONDS, cts.Token);
     }
     
     catch (TaskCanceledException e)
