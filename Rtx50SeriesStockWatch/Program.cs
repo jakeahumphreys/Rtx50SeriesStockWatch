@@ -23,8 +23,8 @@ while (!cts.Token.IsCancellationRequested)
     try
     {
         Console.Clear();
-        await CheckStock(feInventoryClient, "RTX 5080", NvidiaSku.RTX_5080);
-        await CheckStock(feInventoryClient, "RTX 5090", NvidiaSku.RTX_5090);
+        await CheckStock(feInventoryClient, "RTX 5080", NvidiaSku.RTX_5080, cts);
+        await CheckStock(feInventoryClient, "RTX 5090", NvidiaSku.RTX_5090, cts);
         
         await CountdownAsync(DELAY_SECONDS, cts.Token);
     }
@@ -55,7 +55,7 @@ static async Task CountdownAsync(int seconds, CancellationToken token)
     Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
 }
 
-static async Task CheckStock(FeInventoryClient feInventoryClient, string stockName, string sku)
+static async Task CheckStock(FeInventoryClient feInventoryClient, string stockName, string sku, CancellationTokenSource cts)
 {
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.Write($"\rChecking {stockName}...   ");
@@ -70,11 +70,13 @@ static async Task CheckStock(FeInventoryClient feInventoryClient, string stockNa
 
         Console.ResetColor();
         Console.WriteLine(inventoryResult.ListMap.First().ProductUrl);
+        
+        cts.Cancel();
     }
     else
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write($"\r[{stockName} - OUT OF STOCK]   ");
+        Console.Write($"\r[{stockName} - OUT OF STOCK]");
 
         Console.ResetColor();
         Console.WriteLine();
