@@ -6,6 +6,8 @@ namespace Rtx50SeriesStockWatch.FeInventory;
 
 public sealed class FeInventoryClient
 {
+    private const int REQUEST_TIMEOUT_SECONDS = 20;
+    
     public async Task<FeInventoryResponse> GetInventoryAsync(string skus, string locale)
     {
         var request = new HttpRequestMessage(HttpMethod.Get, $"https://api.store.nvidia.com/partner/v1/feinventory?skus={skus}&locale={locale}");
@@ -22,6 +24,8 @@ public sealed class FeInventoryClient
         request.Headers.Add("sec-fetch-dest", "empty");
         request.Headers.Add("sec-fetch-mode", "cors");
         request.Headers.Add("sec-fetch-site", "cross-site");
+        
+        //Needs Http2, 1.0/1.1 times out
         request.Version = HttpVersion.Version20;
         request.VersionPolicy = HttpVersionPolicy.RequestVersionOrHigher;
 
@@ -36,10 +40,11 @@ public sealed class FeInventoryClient
         
         using (var client = new HttpClient(handler))
         {
+            //Needs Http2, 1.0/1.1 times out
             client.DefaultRequestVersion = HttpVersion.Version20;
             client.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrHigher;
             
-            client.Timeout = TimeSpan.FromSeconds(20);
+            client.Timeout = TimeSpan.FromSeconds(REQUEST_TIMEOUT_SECONDS);
             var response = await client.SendAsync(request);
             
             if (!response.IsSuccessStatusCode)
