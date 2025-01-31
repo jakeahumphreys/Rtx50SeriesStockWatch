@@ -10,6 +10,7 @@ public sealed class FeInventoryClient
     {
         var request = new HttpRequestMessage(HttpMethod.Get, $"https://api.store.nvidia.com/partner/v1/feinventory?skus={skus}&locale={locale}");
 
+        //Need these specific headers it seems to get an "authenticated" response
         request.Headers.Clear();
         request.Headers.Add("accept", "application/json, text/plain, */*");
         request.Headers.Add("accept-language", "en-GB,en;q=0.6");
