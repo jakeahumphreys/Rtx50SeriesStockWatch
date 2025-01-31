@@ -31,9 +31,6 @@ public sealed class FeInventoryClient
 
         //spoof user agent
         request.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36");
-
-
-        Console.WriteLine("Attempting to get inventory...");
         
         var handler = new HttpClientHandler
         {
@@ -41,7 +38,7 @@ public sealed class FeInventoryClient
             CookieContainer = new CookieContainer()
         };
         
-        using (var client = new HttpClient())
+        using (var client = new HttpClient(handler))
         {
             client.DefaultRequestVersion = HttpVersion.Version20;
             client.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrHigher;
@@ -55,14 +52,9 @@ public sealed class FeInventoryClient
                 Console.WriteLine(response.ReasonPhrase);
             }
             
-            Console.WriteLine("Successfully retrieved inventory.");
-        
             var content = await response.Content.ReadAsStringAsync();
             
-            if(string.IsNullOrEmpty(content))
-                Console.WriteLine("Empty response");
-            
-            return JsonConvert.DeserializeObject<FeInventoryResponse>(content);
+            return JsonConvert.DeserializeObject<FeInventoryResponse>(content)!;
         }
     }
 }

@@ -16,3 +16,4 @@ C:\Users\jakeh\RiderProjects\Rtx50SeriesStockWatch\Rtx50SeriesStockWatch\obj\Deb
 C:\Users\jakeh\RiderProjects\Rtx50SeriesStockWatch\Rtx50SeriesStockWatch\obj\Debug\net9.0\Rtx50SeriesStockWatch.genruntimeconfig.cache
 C:\Users\jakeh\RiderProjects\Rtx50SeriesStockWatch\Rtx50SeriesStockWatch\obj\Debug\net9.0\ref\Rtx50SeriesStockWatch.dll
 C:\Users\jakeh\RiderProjects\Rtx50SeriesStockWatch\Rtx50SeriesStockWatch\bin\Debug\net9.0\HttpClientToCurl.dll
+C:\Users\jakeh\RiderProjects\Rtx50SeriesStockWatch\Rtx50SeriesStockWatch\obj\Debug\net9.0\Rtx50SeriesStockWatch.sourcelink.json
