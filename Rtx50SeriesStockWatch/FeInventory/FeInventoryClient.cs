@@ -1,8 +1,5 @@
 ﻿using System.Net;
-using System.Net.Http.Headers;
-using HttpClientToCurl;
 using Newtonsoft.Json;
-using Rtx50SeriesStockWatch.Common;
 using Rtx50SeriesStockWatch.FeInventory.Types;
 
 namespace Rtx50SeriesStockWatch.FeInventory;
@@ -17,7 +14,6 @@ public sealed class FeInventoryClient
         request.Headers.Add("accept", "application/json, text/plain, */*");
         request.Headers.Add("accept-language", "en-GB,en;q=0.6");
         request.Headers.Add("origin", "https://marketplace.nvidia.com");
-        // request.Headers.Add("priority", "u=1,i");
         request.Headers.Add("referer", "https://marketplace.nvidia.com");
         request.Headers.Add("sec-ch-ua", "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Brave\";v=\"132\"");
         request.Headers.Add("sec-ch-ua-mobile", "?0");
@@ -27,7 +23,6 @@ public sealed class FeInventoryClient
         request.Headers.Add("sec-fetch-site", "cross-site");
         request.Version = HttpVersion.Version20;
         request.VersionPolicy = HttpVersionPolicy.RequestVersionOrHigher;
-        // request.Headers.Add("sec-gpc", "1");
 
         //spoof user agent
         request.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36");
@@ -44,7 +39,6 @@ public sealed class FeInventoryClient
             client.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrHigher;
             
             client.Timeout = TimeSpan.FromSeconds(20);
-            //client.GenerateCurlInConsole(request);
             var response = await client.SendAsync(request);
             
             if (!response.IsSuccessStatusCode)
